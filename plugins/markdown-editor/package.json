@@ -1,0 +1,40 @@
+{
+  "name": "markdown-editor",
+  "version": "1.0.0",
+  "description": "基于 Vditor 的 Markdown 编辑器 - 支持实时预览、语法高亮、数学公式、Mermaid 图表和导出功能",
+  "author": {
+    "name": "UniHub Team",
+    "email": "team@unihub.dev",
+    "url": "https://github.com/unihub"
+  },
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "package": "npm run build && node scripts/package.js"
+  },
+  "dependencies": {
+    "vditor": "^3.10.4",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "archiver": "^7.0.1",
+    "typescript": "^5.3.0",
+    "vite": "^6.0.0",
+    "vue-tsc": "^2.0.0"
+  },
+  "unihub": {
+    "id": "com.unihub.markdown-editor",
+    "name": "Markdown 编辑器",
+    "icon": "https://api.iconify.design/vscode-icons/file-type-markdown.svg",
+    "category": "tool",
+    "entry": "dist/index.html",
+    "permissions": [
+      "clipboard",
+      "storage"
+    ]
+  }
+}

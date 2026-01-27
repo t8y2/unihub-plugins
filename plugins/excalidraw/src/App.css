@@ -1,0 +1,5 @@
+/* 最小化样式，让Excalidraw自己处理布局 */
+.excalidraw-container {
+  width: 100vw;
+  height: 100vh;
+}

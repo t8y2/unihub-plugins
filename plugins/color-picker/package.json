@@ -1,0 +1,49 @@
+{
+  "name": "color-picker-plugin",
+  "version": "1.0.0",
+  "description": "屏幕取色器 - 支持多种颜色格式转换",
+  "author": {
+    "name": "UniHub Team",
+    "email": "team@unihub.dev",
+    "url": "https://github.com/unihub"
+  },
+  "keywords": [
+    "color",
+    "picker",
+    "eyedropper",
+    "hex",
+    "rgb",
+    "hsl",
+    "取色器",
+    "颜色选择器",
+    "屏幕取色"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "package": "node scripts/package.js"
+  },
+  "unihub": {
+    "id": "com.unihub.color-picker",
+    "name": "取色器",
+    "icon": "https://api.iconify.design/twemoji/artist-palette.svg",
+    "category": "tool",
+    "permissions": [
+      "clipboard"
+    ],
+    "entry": "dist/index.html"
+  },
+  "dependencies": {
+    "lucide-vue-next": "^0.562.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@unocss/reset": "^0.65.3",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "archiver": "^7.0.1",
+    "typescript": "^5.7.3",
+    "unocss": "^0.65.3",
+    "vite": "^6.0.3"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "unihub-plugins",
+  "version": "1.0.0",
+  "description": "Official plugins for UniHub",
+  "private": true,
+  "scripts": {
+    "build:all": "node scripts/build-all.js",
+    "package:all": "node scripts/package-all.js",
+    "publish:all": "node scripts/publish-to-cdn.js",
+    "update-marketplace": "node scripts/update-marketplace.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/t8y2/unihub-plugins.git"
+  },
+  "author": "UniHub Team",
+  "license": "MIT",
+  "devDependencies": {
+    "adm-zip": "^0.5.10",
+    "cos-nodejs-sdk-v5": "^2.14.4"
+  }
+}
