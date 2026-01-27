@@ -18,5 +18,6 @@
   "devDependencies": {
     "adm-zip": "^0.5.10",
     "cos-nodejs-sdk-v5": "^2.14.4"
-  }
+  },
+  "type": "module"
 }
