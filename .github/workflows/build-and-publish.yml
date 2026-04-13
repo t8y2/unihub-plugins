@@ -5,39 +5,39 @@ on:
     branches:
       - main
     paths:
-      - '*/src/**'
-      - '*/package.json'
+      - "*/src/**"
+      - "*/package.json"
   workflow_dispatch:
 
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-      
+          node-version: "18"
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      
+
       - name: Install dependencies
         run: pnpm install
-      
+
       - name: Build all plugins
         run: pnpm run build:all
-      
+
       - name: Package all plugins
         run: pnpm run package:all
-      
+
       - name: Upload to COS
         env:
           COS_SECRET_ID: ${{ secrets.COS_SECRET_ID }}
@@ -45,10 +45,10 @@ jobs:
           COS_BUCKET: ${{ secrets.COS_BUCKET }}
           COS_REGION: ${{ secrets.COS_REGION }}
         run: pnpm run publish:all
-      
+
       - name: Update marketplace
         run: pnpm run update-marketplace
-      
+
       - name: Commit marketplace changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"

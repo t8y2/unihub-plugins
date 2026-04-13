@@ -4,62 +4,66 @@
  * 更新 marketplace/plugins.json
  */
 
-import { readdirSync, existsSync, readFileSync, writeFileSync } from 'fs'
-import { join } from 'path'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import { readdirSync, existsSync, readFileSync, writeFileSync } from "fs";
+import { join } from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const PLUGINS_DIR = join(__dirname, '..')
-const MARKETPLACE_FILE = join(__dirname, '../marketplace/plugins.json')
-const BUCKET = process.env.COS_BUCKET || 'unihub-1307847329'
-const REGION = process.env.COS_REGION || 'ap-shanghai'
+const PLUGINS_DIR = join(__dirname, "..");
+const MARKETPLACE_FILE = join(__dirname, "../marketplace/plugins.json");
+const BUCKET = process.env.COS_BUCKET || "unihub-1307847329";
+const REGION = process.env.COS_REGION || "ap-shanghai";
 
 function getPluginInfo(pluginName) {
-  const packageJsonPath = join(PLUGINS_DIR, pluginName, 'package.json')
-  if (!existsSync(packageJsonPath)) return null
+  const packageJsonPath = join(PLUGINS_DIR, pluginName, "package.json");
+  if (!existsSync(packageJsonPath)) return null;
 
-  const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'))
-  const downloadUrl = `https://${BUCKET}.cos.${REGION}.myqcloud.com/plugins/${pluginName}/${packageJson.version}/plugin.zip`
+  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
+  const downloadUrl = `https://${BUCKET}.cos.${REGION}.myqcloud.com/plugins/${pluginName}/${packageJson.version}/plugin.zip`;
 
   return {
     id: pluginName,
     name: packageJson.displayName || packageJson.name,
     version: packageJson.version,
-    description: packageJson.description || '',
-    author: packageJson.author || { name: 'UniHub Team' },
+    description: packageJson.description || "",
+    author: packageJson.author || { name: "UniHub Team" },
     downloadUrl,
-    homepage: packageJson.homepage || '',
-    repository: packageJson.repository?.url || '',
+    homepage: packageJson.homepage || "",
+    repository: packageJson.repository?.url || "",
     keywords: packageJson.keywords || [],
-    lastUpdated: new Date().toISOString()
-  }
+    lastUpdated: new Date().toISOString(),
+  };
 }
 
 function main() {
-  console.log('📝 Updating marketplace/plugins.json...\n')
+  console.log("📝 Updating marketplace/plugins.json...\n");
 
   const plugins = readdirSync(PLUGINS_DIR, { withFileTypes: true })
     .filter((dirent) => dirent.isDirectory())
     .map((dirent) => dirent.name)
     .map(getPluginInfo)
-    .filter(Boolean)
+    .filter(Boolean);
 
   const marketplace = {
-    version: '1.0.0',
+    version: "1.0.0",
     lastUpdated: new Date().toISOString(),
-    plugins
-  }
+    plugins,
+  };
 
-  writeFileSync(MARKETPLACE_FILE, JSON.stringify(marketplace, null, 2), 'utf-8')
+  writeFileSync(
+    MARKETPLACE_FILE,
+    JSON.stringify(marketplace, null, 2),
+    "utf-8",
+  );
 
-  console.log(`✅ Updated marketplace with ${plugins.length} plugins`)
-  console.log('\n📦 Plugins:')
+  console.log(`✅ Updated marketplace with ${plugins.length} plugins`);
+  console.log("\n📦 Plugins:");
   plugins.forEach((plugin) => {
-    console.log(`  - ${plugin.name} (${plugin.version})`)
-  })
+    console.log(`  - ${plugin.name} (${plugin.version})`);
+  });
 }
 
-main()
+main();
