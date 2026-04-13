@@ -24,7 +24,7 @@
   "unihub": {
     "id": "com.baiy.ctool",
     "name": "Ctool 开发工具集",
-    "icon": "dist/favicon.ico",
+    "icon": "https://api.iconify.design/fluent-emoji/toolbox.svg",
     "category": "developer",
     "permissions": [
       "clipboard",

@@ -25,7 +25,7 @@
   "unihub": {
     "id": "com.unihub.excalidraw",
     "name": "Excalidraw 绘图工具",
-    "icon": "dist/favicon.svg",
+    "icon": "https://api.iconify.design/fluent-emoji/artist-palette.svg",
     "category": "tool",
     "permissions": [
       "clipboard",

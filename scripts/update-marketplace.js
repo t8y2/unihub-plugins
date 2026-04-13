@@ -26,13 +26,15 @@ function getPluginInfo(pluginName) {
   const version = unihub.version || packageJson.version;
   const downloadUrl = `https://${BUCKET}.cos.${REGION}.myqcloud.com/plugins/${pluginName}/${version}/plugin.zip`;
 
+  const icon = (unihub.icon && unihub.icon.startsWith("http")) ? unihub.icon : "";
+
   return {
     id: unihub.id || pluginName,
     name: unihub.name || packageJson.displayName || packageJson.name,
     version,
     description: packageJson.description || "",
     author: packageJson.author || { name: "UniHub Team" },
-    icon: unihub.icon || "",
+    icon,
     category: unihub.category || "other",
     keywords: packageJson.keywords || [],
     permissions: unihub.permissions || [],
