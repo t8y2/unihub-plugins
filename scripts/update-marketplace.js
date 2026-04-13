@@ -22,19 +22,31 @@ function getPluginInfo(pluginName) {
   if (!existsSync(packageJsonPath)) return null;
 
   const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf-8"));
-  const downloadUrl = `https://${BUCKET}.cos.${REGION}.myqcloud.com/plugins/${pluginName}/${packageJson.version}/plugin.zip`;
+  const unihub = packageJson.unihub || {};
+  const version = unihub.version || packageJson.version;
+  const downloadUrl = `https://${BUCKET}.cos.${REGION}.myqcloud.com/plugins/${pluginName}/${version}/plugin.zip`;
 
   return {
-    id: pluginName,
-    name: packageJson.displayName || packageJson.name,
-    version: packageJson.version,
+    id: unihub.id || pluginName,
+    name: unihub.name || packageJson.displayName || packageJson.name,
+    version,
     description: packageJson.description || "",
     author: packageJson.author || { name: "UniHub Team" },
+    icon: unihub.icon || "",
+    category: unihub.category || "other",
+    keywords: packageJson.keywords || [],
+    permissions: unihub.permissions || [],
+    install: {
+      zip: downloadUrl,
+    },
     downloadUrl,
     homepage: packageJson.homepage || "",
     repository: packageJson.repository?.url || "",
-    keywords: packageJson.keywords || [],
-    lastUpdated: new Date().toISOString(),
+    screenshots: [],
+    downloads: 0,
+    rating: 0,
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 }
 
