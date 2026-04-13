@@ -79,7 +79,7 @@ jobs:
           COS_BUCKET: ${{ secrets.COS_BUCKET }}
           COS_REGION: ${{ secrets.COS_REGION }}
         run: |
-          pnpm install --frozen-lockfile
+          pnpm install --no-frozen-lockfile
           node scripts/upload-to-cos.cjs ${{ matrix.plugin }}
 
   update-marketplace:
