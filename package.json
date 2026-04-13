@@ -19,5 +19,12 @@
     "adm-zip": "^0.5.10",
     "cos-nodejs-sdk-v5": "^2.14.4"
   },
+  "pnpm": {
+    "supportedArchitectures": {
+      "os": ["linux", "darwin"],
+      "cpu": ["x64", "arm64"],
+      "libc": ["glibc"]
+    }
+  },
   "type": "module"
 }
