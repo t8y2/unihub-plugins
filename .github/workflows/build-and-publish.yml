@@ -5,7 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'plugins/**'
+      - '*/src/**'
+      - '*/package.json'
   workflow_dispatch:
 
 jobs:
@@ -53,5 +54,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add marketplace/plugins.json
-          git diff --staged --quiet || git commit -m "chore: update marketplace after build"
+          git diff --staged --quiet || git commit -m "chore: update marketplace after build [skip ci]"
           git push

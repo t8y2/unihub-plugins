@@ -12,7 +12,7 @@ import { dirname } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const PLUGINS_DIR = join(__dirname, '../plugins')
+const PLUGINS_DIR = join(__dirname, '..')
 const MARKETPLACE_FILE = join(__dirname, '../marketplace/plugins.json')
 const BUCKET = process.env.COS_BUCKET || 'unihub-1307847329'
 const REGION = process.env.COS_REGION || 'ap-shanghai'

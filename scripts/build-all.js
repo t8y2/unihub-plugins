@@ -13,7 +13,7 @@ import { dirname } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const PLUGINS_DIR = join(__dirname, '../plugins')
+const PLUGINS_DIR = join(__dirname, '..')
 
 function getPluginDirs() {
   return readdirSync(PLUGINS_DIR, { withFileTypes: true })

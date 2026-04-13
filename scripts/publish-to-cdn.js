@@ -13,7 +13,7 @@ import { dirname } from 'path'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-const PLUGINS_DIR = join(__dirname, '../plugins')
+const PLUGINS_DIR = join(__dirname, '..')
 
 const cos = new COS({
   SecretId: process.env.COS_SECRET_ID,
