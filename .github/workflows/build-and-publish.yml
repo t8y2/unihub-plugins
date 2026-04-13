@@ -2,43 +2,72 @@ name: Build and Publish Plugins
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
       - "*/src/**"
       - "*/package.json"
   workflow_dispatch:
+    inputs:
+      build_all:
+        description: "Build all plugins (ignore diff)"
+        type: boolean
+        default: false
 
 jobs:
-  build-and-publish:
+  detect:
     runs-on: ubuntu-latest
-
+    outputs:
+      plugins: ${{ steps.detect.outputs.plugins }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 2
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "18"
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-
-      - name: Install dependencies
+      - name: Detect changed plugins
+        id: detect
         run: |
-          find . -name "pnpm-lock.yaml" -not -path "./.git/*" -delete
-          pnpm install
+          EXCLUDE='^(scripts|marketplace|\.github|README|package\.json|pnpm|\.)'
+          if [ "${{ inputs.build_all }}" == "true" ]; then
+            PLUGINS=$(ls -d */ | sed 's|/||' | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
+          else
+            PLUGINS=$(git diff --name-only HEAD^ HEAD | cut -d'/' -f1 | sort -u | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
+            # fallback: build all on workflow_dispatch with no diff
+            if [ "$PLUGINS" = "[]" ] && [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              PLUGINS=$(ls -d */ | sed 's|/||' | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
+            fi
+          fi
+          echo "plugins=$PLUGINS" >> $GITHUB_OUTPUT
+          echo "Will build: $PLUGINS"
 
-      - name: Build all plugins
-        run: pnpm run build:all
+  build:
+    needs: detect
+    if: needs.detect.outputs.plugins != '[]' && needs.detect.outputs.plugins != ''
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        plugin: ${{ fromJson(needs.detect.outputs.plugins) }}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Package all plugins
-        run: pnpm run package:all
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Build ${{ matrix.plugin }}
+        run: |
+          cd ${{ matrix.plugin }}
+          pnpm install --no-frozen-lockfile
+          pnpm run build
+
+      - name: Package ${{ matrix.plugin }}
+        run: |
+          cd ${{ matrix.plugin }}
+          node scripts/package.js
 
       - name: Upload to COS
         env:
@@ -46,10 +75,30 @@ jobs:
           COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
           COS_BUCKET: ${{ secrets.COS_BUCKET }}
           COS_REGION: ${{ secrets.COS_REGION }}
-        run: pnpm run publish:all
+        run: node scripts/upload-to-cos.js ${{ matrix.plugin }}
+
+  update-marketplace:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Install root deps
+        run: pnpm install --ignore-workspace
 
       - name: Update marketplace
-        run: pnpm run update-marketplace
+        env:
+          COS_BUCKET: ${{ secrets.COS_BUCKET }}
+          COS_REGION: ${{ secrets.COS_REGION }}
+        run: node scripts/update-marketplace.js
 
       - name: Commit marketplace changes
         run: |
