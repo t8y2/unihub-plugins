@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-04-13T11:34:52.092Z",
+  "lastUpdated": "2026-04-13T11:38:36.588Z",
   "plugins": [
     {
       "id": "com.unihub.2fa-authenticator",
@@ -36,8 +36,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.090Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.587Z",
+      "updatedAt": "2026-04-13T11:38:36.587Z"
     },
     {
       "id": "com.unihub.calc-paper",
@@ -71,8 +71,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.587Z",
+      "updatedAt": "2026-04-13T11:38:36.587Z"
     },
     {
       "id": "com.unihub.clipboard-history",
@@ -108,8 +108,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.587Z",
+      "updatedAt": "2026-04-13T11:38:36.587Z"
     },
     {
       "id": "com.unihub.code-diff",
@@ -144,8 +144,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.587Z",
+      "updatedAt": "2026-04-13T11:38:36.587Z"
     },
     {
       "id": "com.unihub.color-picker",
@@ -182,8 +182,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.587Z",
+      "updatedAt": "2026-04-13T11:38:36.587Z"
     },
     {
       "id": "com.baiy.ctool",
@@ -194,7 +194,7 @@
         "name": "baiy",
         "url": "https://github.com/baiy"
       },
-      "icon": "dist/favicon.ico",
+      "icon": "https://api.iconify.design/fluent-emoji/toolbox.svg",
       "category": "developer",
       "keywords": [
         "ctool",
@@ -220,8 +220,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.587Z",
+      "updatedAt": "2026-04-13T11:38:36.587Z"
     },
     {
       "id": "com.unihub.curl-converter",
@@ -256,8 +256,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.excalidraw",
@@ -268,7 +268,7 @@
         "name": "Excalidraw Contributors",
         "url": "https://github.com/excalidraw/excalidraw"
       },
-      "icon": "dist/favicon.svg",
+      "icon": "https://api.iconify.design/fluent-emoji/artist-palette.svg",
       "category": "tool",
       "keywords": [
         "excalidraw",
@@ -293,8 +293,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.h5-formatter",
@@ -331,8 +331,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.image-compressor",
@@ -366,8 +366,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.javascript-formatter",
@@ -401,8 +401,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.091Z",
-      "updatedAt": "2026-04-13T11:34:52.091Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.jwt-tool",
@@ -437,8 +437,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.092Z",
-      "updatedAt": "2026-04-13T11:34:52.092Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.markdown-editor",
@@ -466,8 +466,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.092Z",
-      "updatedAt": "2026-04-13T11:34:52.092Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.password-manager",
@@ -503,8 +503,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.092Z",
-      "updatedAt": "2026-04-13T11:34:52.092Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.pdf-merger",
@@ -537,8 +537,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.092Z",
-      "updatedAt": "2026-04-13T11:34:52.092Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.timestamp-tool",
@@ -574,8 +574,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.092Z",
-      "updatedAt": "2026-04-13T11:34:52.092Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     },
     {
       "id": "com.unihub.todolist",
@@ -610,8 +610,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:34:52.092Z",
-      "updatedAt": "2026-04-13T11:34:52.092Z"
+      "createdAt": "2026-04-13T11:38:36.588Z",
+      "updatedAt": "2026-04-13T11:38:36.588Z"
     }
   ]
 }
