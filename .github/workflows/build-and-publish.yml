@@ -83,7 +83,8 @@ jobs:
           node scripts/upload-to-cos.cjs ${{ matrix.plugin }}
 
   update-marketplace:
-    needs: build
+    needs: [detect, build]
+    if: always() && needs.detect.result == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

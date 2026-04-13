@@ -32,24 +32,48 @@ if (!COS_SECRET_ID || !COS_SECRET_KEY || !COS_BUCKET || !COS_REGION) {
   process.exit(1);
 }
 
-const cos = new COS({ SecretId: COS_SECRET_ID, SecretKey: COS_SECRET_KEY });
+const cos = new COS({
+  SecretId: COS_SECRET_ID,
+  SecretKey: COS_SECRET_KEY,
+  Timeout: 900000 // 15 分钟超时（跨洋大文件）
+});
 
-function uploadFile(localPath, key) {
-  return new Promise((resolve, reject) => {
-    cos.uploadFile(
-      {
-        Bucket: COS_BUCKET,
-        Region: COS_REGION,
-        Key: key,
-        FilePath: localPath,
-        SliceSize: 5 * 1024 * 1024, // >5MB 自动切片上传
-      },
-      (err, data) => {
-        if (err) reject(err);
-        else resolve(data);
-      },
-    );
-  });
+async function uploadFile(localPath, key, retries = 3) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      await new Promise((resolve, reject) => {
+        cos.uploadFile(
+          {
+            Bucket: COS_BUCKET,
+            Region: COS_REGION,
+            Key: key,
+            FilePath: localPath,
+            SliceSize: 2 * 1024 * 1024, // 2MB 切片，减小单片上传压力
+            ChunkParallelLimit: 2,
+            onProgress: (p) => {
+              if (p.percent > 0) {
+                process.stdout.write(`\r   进度: ${(p.percent * 100).toFixed(1)}%`)
+              }
+            }
+          },
+          (err, data) => {
+            if (err) reject(err);
+            else resolve(data);
+          }
+        );
+      });
+      process.stdout.write('\n');
+      return;
+    } catch (err) {
+      process.stdout.write('\n');
+      if (attempt < retries) {
+        console.warn(`⚠️  第 ${attempt} 次上传失败 (${err.message})，${attempt * 10}s 后重试...`);
+        await new Promise(r => setTimeout(r, attempt * 10000));
+      } else {
+        throw err;
+      }
+    }
+  }
 }
 
 async function main() {
