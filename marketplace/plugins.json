@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-04-13T11:29:07.098Z",
+  "lastUpdated": "2026-04-13T11:34:52.092Z",
   "plugins": [
     {
-      "id": "2fa-authenticator",
-      "name": "2fa-authenticator-plugin",
+      "id": "com.unihub.2fa-authenticator",
+      "name": "2FA 验证器",
       "version": "1.0.0",
       "description": "TOTP 双因素验证码生成器 - 支持添加、管理和生成 2FA 验证码",
       "author": {
@@ -12,9 +12,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/2fa-authenticator/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/fluent-emoji/shield.svg",
+      "category": "tool",
       "keywords": [
         "2fa",
         "totp",
@@ -24,11 +23,25 @@
         "验证码",
         "双因素认证"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard",
+        "storage"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/2fa-authenticator/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/2fa-authenticator/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.090Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "calc-paper",
-      "name": "calc-paper-plugin",
+      "id": "com.unihub.calc-paper",
+      "name": "计算稿纸",
       "version": "1.0.0",
       "description": "计算稿纸 - 快速计算、保存和管理计算草稿",
       "author": {
@@ -36,9 +49,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/calc-paper/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/fluent-emoji/calculator.svg",
+      "category": "tool",
       "keywords": [
         "calculator",
         "paper",
@@ -46,11 +58,25 @@
         "稿纸",
         "草稿"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard",
+        "storage"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/calc-paper/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/calc-paper/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "clipboard-history",
-      "name": "clipboard-history-plugin",
+      "id": "com.unihub.clipboard-history",
+      "name": "剪贴板历史",
       "version": "1.0.2",
       "description": "剪贴板历史管理工具 - 记录、搜索和管理剪贴板历史",
       "author": {
@@ -58,9 +84,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/clipboard-history/1.0.2/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/fluent-emoji/clipboard.svg",
+      "category": "tool",
       "keywords": [
         "clipboard",
         "history",
@@ -69,11 +94,26 @@
         "剪贴板",
         "历史记录"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard",
+        "storage",
+        "system"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/clipboard-history/1.0.2/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/clipboard-history/1.0.2/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "code-diff",
-      "name": "code-diff",
+      "id": "com.unihub.code-diff",
+      "name": "代码对比工具",
       "version": "1.0.0",
       "description": "代码对比工具 - 基于 Monaco Editor 的强大代码差异对比功能，支持语法高亮和多种编程语言",
       "author": {
@@ -81,9 +121,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/code-diff/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/vscode-icons/file-type-diff.svg",
+      "category": "tool",
       "keywords": [
         "code",
         "diff",
@@ -92,11 +131,25 @@
         "代码对比",
         "差异比较"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard",
+        "storage"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/code-diff/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/code-diff/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "color-picker",
-      "name": "color-picker-plugin",
+      "id": "com.unihub.color-picker",
+      "name": "取色器",
       "version": "1.0.0",
       "description": "屏幕取色器 - 支持多种颜色格式转换",
       "author": {
@@ -104,9 +157,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/color-picker/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/twemoji/artist-palette.svg",
+      "category": "tool",
       "keywords": [
         "color",
         "picker",
@@ -118,20 +170,32 @@
         "颜色选择器",
         "屏幕取色"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/color-picker/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/color-picker/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "ctool",
-      "name": "ctool-plugin",
+      "id": "com.baiy.ctool",
+      "name": "Ctool 开发工具集",
       "version": "1.0.0",
       "description": "程序开发常用工具集 - 包含 40+ 个开发工具",
       "author": {
         "name": "baiy",
         "url": "https://github.com/baiy"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/ctool/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "dist/favicon.ico",
+      "category": "developer",
       "keywords": [
         "ctool",
         "developer",
@@ -142,11 +206,26 @@
         "formatter",
         "开发工具"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard",
+        "fs",
+        "http"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/ctool/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/ctool/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "curl-converter",
-      "name": "curl-converter-plugin",
+      "id": "com.unihub.curl-converter",
+      "name": "Win Curl 转换器",
       "version": "1.0.1",
       "description": "Shell curl 命令转换为 Windows curl 格式 - 自动处理单引号转双引号、JSON 内双引号转义、换行符处理",
       "author": {
@@ -154,9 +233,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/curl-converter/1.0.1/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/mdi/swap-horizontal.svg",
+      "category": "tool",
       "keywords": [
         "curl",
         "windows",
@@ -166,20 +244,32 @@
         "命令行",
         "转换"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/curl-converter/1.0.1/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/curl-converter/1.0.1/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "excalidraw",
-      "name": "excalidraw-plugin",
+      "id": "com.unihub.excalidraw",
+      "name": "Excalidraw 绘图工具",
       "version": "0.18.0",
       "description": "Excalidraw 离线绘图工具 - 手绘风格的图表和白板工具",
       "author": {
         "name": "Excalidraw Contributors",
         "url": "https://github.com/excalidraw/excalidraw"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/excalidraw/0.18.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "dist/favicon.svg",
+      "category": "tool",
       "keywords": [
         "excalidraw",
         "drawing",
@@ -190,11 +280,25 @@
         "图表",
         "白板"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard",
+        "fs"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/excalidraw/0.18.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/excalidraw/0.18.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "h5-formatter",
-      "name": "h5-formatter-plugin",
+      "id": "com.unihub.h5-formatter",
+      "name": "H5 格式化工具",
       "version": "1.0.0",
       "description": "H5 页面格式化与压缩工具 - 支持 HTML/CSS/JavaScript 的美化和压缩",
       "author": {
@@ -202,9 +306,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/h5-formatter/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/vscode-icons/file-type-html.svg",
+      "category": "formatter",
       "keywords": [
         "h5",
         "html",
@@ -216,11 +319,24 @@
         "格式化",
         "压缩"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/h5-formatter/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/h5-formatter/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "image-compressor",
-      "name": "image-compressor-plugin",
+      "id": "com.unihub.image-compressor",
+      "name": "图片压缩工具",
       "version": "1.0.0",
       "description": "图片压缩工具 - 支持批量压缩、格式转换、尺寸调整，支持 JPG/PNG/WebP 格式",
       "author": {
@@ -228,9 +344,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/image-compressor/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/mdi/image-size-select-actual.svg",
+      "category": "tool",
       "keywords": [
         "image",
         "compress",
@@ -239,11 +354,24 @@
         "图片压缩",
         "格式转换"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/image-compressor/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/image-compressor/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "javascript-formatter",
-      "name": "javascript-formatter-plugin",
+      "id": "com.unihub.javascript-formatter",
+      "name": "JavaScript 格式化",
       "version": "1.0.0",
       "description": "JavaScript 代码格式化与压缩工具",
       "author": {
@@ -251,9 +379,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/javascript-formatter/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/vscode-icons/file-type-js-official.svg",
+      "category": "formatter",
       "keywords": [
         "javascript",
         "js",
@@ -262,11 +389,24 @@
         "prettier",
         "格式化"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.097Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/javascript-formatter/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/javascript-formatter/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.091Z",
+      "updatedAt": "2026-04-13T11:34:52.091Z"
     },
     {
-      "id": "jwt-tool",
-      "name": "jwt-tool-plugin",
+      "id": "com.unihub.jwt-tool",
+      "name": "JWT 工具",
       "version": "1.0.0",
       "description": "JWT 编码解码与验证工具 - 支持 HS256/HS384/HS512 算法",
       "author": {
@@ -274,9 +414,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/jwt-tool/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/twemoji/locked-with-key.svg",
+      "category": "tool",
       "keywords": [
         "jwt",
         "token",
@@ -286,11 +425,24 @@
         "verify",
         "认证"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.098Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/jwt-tool/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/jwt-tool/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.092Z",
+      "updatedAt": "2026-04-13T11:34:52.092Z"
     },
     {
-      "id": "markdown-editor",
-      "name": "markdown-editor",
+      "id": "com.unihub.markdown-editor",
+      "name": "Markdown 编辑器",
       "version": "1.0.0",
       "description": "基于 Vditor 的 Markdown 编辑器 - 支持实时预览、语法高亮、数学公式、Mermaid 图表和导出功能",
       "author": {
@@ -298,15 +450,28 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
+      "icon": "https://api.iconify.design/vscode-icons/file-type-markdown.svg",
+      "category": "tool",
+      "keywords": [],
+      "permissions": [
+        "clipboard",
+        "storage"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/markdown-editor/1.0.0/plugin.zip"
+      },
       "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/markdown-editor/1.0.0/plugin.zip",
       "homepage": "",
       "repository": "",
-      "keywords": [],
-      "lastUpdated": "2026-04-13T11:29:07.098Z"
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.092Z",
+      "updatedAt": "2026-04-13T11:34:52.092Z"
     },
     {
-      "id": "password-manager",
-      "name": "password-manager-plugin",
+      "id": "com.unihub.password-manager",
+      "name": "密码管理器",
       "version": "1.0.0",
       "description": "密码管理器 - 安全存储和管理密码，支持密码生成和分类管理",
       "author": {
@@ -314,9 +479,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/password-manager/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/fluent-emoji/locked-with-key.svg",
+      "category": "tool",
       "keywords": [
         "password",
         "manager",
@@ -326,11 +490,25 @@
         "密码生成器",
         "安全"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.098Z"
+      "permissions": [
+        "clipboard",
+        "storage"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/password-manager/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/password-manager/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.092Z",
+      "updatedAt": "2026-04-13T11:34:52.092Z"
     },
     {
-      "id": "pdf-merger",
-      "name": "pdf-merger-plugin",
+      "id": "com.unihub.pdf-merger",
+      "name": "PDF 合并工具",
       "version": "1.0.0",
       "description": "PDF 合并工具 - 支持多个 PDF 文件合并、拖拽排序、预览和下载",
       "author": {
@@ -338,9 +516,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/pdf-merger/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/vscode-icons/file-type-pdf2.svg",
+      "category": "tool",
       "keywords": [
         "pdf",
         "merge",
@@ -348,11 +525,24 @@
         "PDF合并",
         "文档处理"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.098Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/pdf-merger/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/pdf-merger/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.092Z",
+      "updatedAt": "2026-04-13T11:34:52.092Z"
     },
     {
-      "id": "timestamp-tool",
-      "name": "timestamp-tool-plugin",
+      "id": "com.unihub.timestamp-tool",
+      "name": "时间戳转换",
       "version": "1.0.0",
       "description": "时间戳转换工具 - 支持时间段/秒/毫秒/纳秒互转",
       "author": {
@@ -360,9 +550,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/timestamp-tool/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/twemoji/clockwise-vertical-arrows.svg",
+      "category": "tool",
       "keywords": [
         "timestamp",
         "time",
@@ -373,11 +562,24 @@
         "时间转换",
         "时间段"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.098Z"
+      "permissions": [
+        "clipboard"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/timestamp-tool/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/timestamp-tool/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.092Z",
+      "updatedAt": "2026-04-13T11:34:52.092Z"
     },
     {
-      "id": "todolist",
-      "name": "todolist-plugin",
+      "id": "com.unihub.todolist",
+      "name": "待办清单",
       "version": "1.0.0",
       "description": "优雅的待办事项管理工具 - 支持分类、优先级、提醒和统计",
       "author": {
@@ -385,9 +587,8 @@
         "email": "team@unihub.dev",
         "url": "https://github.com/unihub"
       },
-      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/todolist/1.0.0/plugin.zip",
-      "homepage": "",
-      "repository": "",
+      "icon": "https://api.iconify.design/fluent-emoji/memo.svg",
+      "category": "tool",
       "keywords": [
         "todo",
         "todolist",
@@ -397,7 +598,20 @@
         "待办",
         "任务管理"
       ],
-      "lastUpdated": "2026-04-13T11:29:07.098Z"
+      "permissions": [
+        "storage"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/todolist/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/todolist/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-13T11:34:52.092Z",
+      "updatedAt": "2026-04-13T11:34:52.092Z"
     }
   ]
 }
