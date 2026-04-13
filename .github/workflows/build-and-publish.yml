@@ -12,6 +12,10 @@ on:
         description: "Build all plugins (ignore diff)"
         type: boolean
         default: false
+      plugin:
+        description: "Build a specific plugin only (e.g. calc-paper)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -29,15 +33,13 @@ jobs:
       - name: Detect changed plugins
         id: detect
         run: |
-          EXCLUDE='^(scripts|marketplace|\.github|README|package\.json|pnpm|\.|ctool)'
-          if [ "${{ inputs.build_all }}" == "true" ]; then
+          EXCLUDE='^(scripts|marketplace|\.github|README|package\.json|pnpm|\.|ctool|excalidraw)'
+          if [ -n "${{ inputs.plugin }}" ]; then
+            PLUGINS=$(echo '${{ inputs.plugin }}' | jq -Rc . | jq -sc .)
+          elif [ "${{ inputs.build_all }}" == "true" ]; then
             PLUGINS=$(ls -d */ | sed 's|/||' | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
           else
             PLUGINS=$(git diff --name-only HEAD^ HEAD | cut -d'/' -f1 | sort -u | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
-            # fallback: build all on workflow_dispatch with no diff
-            if [ "$PLUGINS" = "[]" ] && [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-              PLUGINS=$(ls -d */ | sed 's|/||' | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
-            fi
           fi
           echo "plugins=$PLUGINS" >> $GITHUB_OUTPUT
           echo "Will build: $PLUGINS"

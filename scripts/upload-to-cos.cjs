@@ -23,7 +23,7 @@ const COS_SECRET_ID = process.env.COS_SECRET_ID;
 const COS_SECRET_KEY = process.env.COS_SECRET_KEY;
 const COS_BUCKET = process.env.COS_BUCKET;
 const COS_REGION = process.env.COS_REGION;
-const COS_BASE_PATH = process.env.COS_BASE_PATH || "official-plugins";
+const COS_BASE_PATH = process.env.COS_BASE_PATH || "plugins";
 
 if (!COS_SECRET_ID || !COS_SECRET_KEY || !COS_BUCKET || !COS_REGION) {
   console.error(
@@ -35,7 +35,7 @@ if (!COS_SECRET_ID || !COS_SECRET_KEY || !COS_BUCKET || !COS_REGION) {
 const cos = new COS({
   SecretId: COS_SECRET_ID,
   SecretKey: COS_SECRET_KEY,
-  Timeout: 900000 // 15 分钟超时（跨洋大文件）
+  Timeout: 900000, // 15 分钟超时（跨洋大文件）
 });
 
 async function uploadFile(localPath, key, retries = 3) {
@@ -52,23 +52,27 @@ async function uploadFile(localPath, key, retries = 3) {
             ChunkParallelLimit: 2,
             onProgress: (p) => {
               if (p.percent > 0) {
-                process.stdout.write(`\r   进度: ${(p.percent * 100).toFixed(1)}%`)
+                process.stdout.write(
+                  `\r   进度: ${(p.percent * 100).toFixed(1)}%`,
+                );
               }
-            }
+            },
           },
           (err, data) => {
             if (err) reject(err);
             else resolve(data);
-          }
+          },
         );
       });
-      process.stdout.write('\n');
+      process.stdout.write("\n");
       return;
     } catch (err) {
-      process.stdout.write('\n');
+      process.stdout.write("\n");
       if (attempt < retries) {
-        console.warn(`⚠️  第 ${attempt} 次上传失败 (${err.message})，${attempt * 10}s 后重试...`);
-        await new Promise(r => setTimeout(r, attempt * 10000));
+        console.warn(
+          `⚠️  第 ${attempt} 次上传失败 (${err.message})，${attempt * 10}s 后重试...`,
+        );
+        await new Promise((r) => setTimeout(r, attempt * 10000));
       } else {
         throw err;
       }
@@ -97,7 +101,7 @@ async function main() {
   const fileSize = statSync(zipPath).size;
 
   const latestKey = `${COS_BASE_PATH}/${pluginPath}/plugin.zip`;
-  const versionedKey = `${COS_BASE_PATH}/${pluginPath}/v${pluginVersion}/plugin.zip`;
+  const versionedKey = `${COS_BASE_PATH}/${pluginPath}/${pluginVersion}/plugin.zip`;
 
   console.log(
     `📤 上传 ${pluginPath} (${(fileSize / 1024 / 1024).toFixed(2)} MB)`,
@@ -120,4 +124,3 @@ main().catch((e) => {
   console.error("   3. 确认密钥有存储桶的写入权限");
   process.exit(1);
 });
-
