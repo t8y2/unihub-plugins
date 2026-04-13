@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-04-13T11:23:28.404Z",
+  "lastUpdated": "2026-04-13T11:29:07.098Z",
   "plugins": [
     {
       "id": "2fa-authenticator",
@@ -24,7 +24,7 @@
         "验证码",
         "双因素认证"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "calc-paper",
@@ -46,7 +46,7 @@
         "稿纸",
         "草稿"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "clipboard-history",
@@ -69,7 +69,7 @@
         "剪贴板",
         "历史记录"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "code-diff",
@@ -92,7 +92,7 @@
         "代码对比",
         "差异比较"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "color-picker",
@@ -118,7 +118,7 @@
         "颜色选择器",
         "屏幕取色"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "ctool",
@@ -142,7 +142,7 @@
         "formatter",
         "开发工具"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "curl-converter",
@@ -166,7 +166,7 @@
         "命令行",
         "转换"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "excalidraw",
@@ -190,7 +190,7 @@
         "图表",
         "白板"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "h5-formatter",
@@ -216,7 +216,7 @@
         "格式化",
         "压缩"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "image-compressor",
@@ -239,7 +239,7 @@
         "图片压缩",
         "格式转换"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.403Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "javascript-formatter",
@@ -262,7 +262,7 @@
         "prettier",
         "格式化"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.097Z"
     },
     {
       "id": "jwt-tool",
@@ -286,7 +286,7 @@
         "verify",
         "认证"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.098Z"
     },
     {
       "id": "markdown-editor",
@@ -302,7 +302,7 @@
       "homepage": "",
       "repository": "",
       "keywords": [],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.098Z"
     },
     {
       "id": "password-manager",
@@ -326,7 +326,7 @@
         "密码生成器",
         "安全"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.098Z"
     },
     {
       "id": "pdf-merger",
@@ -348,7 +348,7 @@
         "PDF合并",
         "文档处理"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.098Z"
     },
     {
       "id": "timestamp-tool",
@@ -373,7 +373,7 @@
         "时间转换",
         "时间段"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.098Z"
     },
     {
       "id": "todolist",
@@ -397,7 +397,7 @@
         "待办",
         "任务管理"
       ],
-      "lastUpdated": "2026-04-13T11:23:28.404Z"
+      "lastUpdated": "2026-04-13T11:29:07.098Z"
     }
   ]
 }
