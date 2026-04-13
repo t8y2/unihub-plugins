@@ -92,7 +92,7 @@ jobs:
           version: 9
 
       - name: Install root deps
-        run: pnpm install --ignore-workspace
+        run: pnpm install
 
       - name: Update marketplace
         env:
