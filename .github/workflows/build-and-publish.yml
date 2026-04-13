@@ -78,7 +78,9 @@ jobs:
           COS_SECRET_KEY: ${{ secrets.COS_SECRET_KEY }}
           COS_BUCKET: ${{ secrets.COS_BUCKET }}
           COS_REGION: ${{ secrets.COS_REGION }}
-        run: node scripts/upload-to-cos.cjs ${{ matrix.plugin }}
+        run: |
+          pnpm install --frozen-lockfile
+          node scripts/upload-to-cos.cjs ${{ matrix.plugin }}
 
   update-marketplace:
     needs: build
