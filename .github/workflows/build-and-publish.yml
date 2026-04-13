@@ -26,7 +26,7 @@ jobs:
       - name: Detect changed plugins
         id: detect
         run: |
-          EXCLUDE='^(scripts|marketplace|\.github|README|package\.json|pnpm|\.)'
+          EXCLUDE='^(scripts|marketplace|\.github|README|package\.json|pnpm|\.|ctool)'
           if [ "${{ inputs.build_all }}" == "true" ]; then
             PLUGINS=$(ls -d */ | sed 's|/||' | grep -vE "$EXCLUDE" | jq -Rc . | jq -sc .)
           else
