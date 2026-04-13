@@ -108,6 +108,12 @@ jobs:
           COS_REGION: ${{ secrets.COS_REGION }}
         run: node scripts/update-marketplace.js
 
+      - name: Sync plugins to Gist
+        env:
+          GIST_ID: ${{ secrets.GIST_ID }}
+          GIST_TOKEN: ${{ secrets.GIST_TOKEN }}
+        run: node scripts/sync-plugins-to-gist.cjs
+
       - name: Commit marketplace changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
