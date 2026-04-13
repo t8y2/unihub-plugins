@@ -30,13 +30,6 @@ function buildPlugin(pluginName) {
   console.log(`\n📦 Building ${pluginName}...`);
 
   try {
-    // 安装依赖
-    console.log("  Installing dependencies...");
-    execSync("pnpm install --no-frozen-lockfile", {
-      cwd: pluginDir,
-      stdio: "inherit",
-    });
-
     // 构建
     console.log("  Building...");
     execSync("pnpm run build", { cwd: pluginDir, stdio: "inherit" });

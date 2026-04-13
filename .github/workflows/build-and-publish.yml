@@ -30,7 +30,9 @@ jobs:
           version: 8
 
       - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+        run: |
+          find . -name "pnpm-lock.yaml" -not -path "./.git/*" -delete
+          pnpm install
 
       - name: Build all plugins
         run: pnpm run build:all
