@@ -26,7 +26,7 @@ function getPluginInfo(pluginName) {
   const version = unihub.version || packageJson.version;
   const downloadUrl = `https://${BUCKET}.cos.${REGION}.myqcloud.com/plugins/${pluginName}/${version}/plugin.zip`;
 
-  const icon = (unihub.icon && unihub.icon.startsWith("http")) ? unihub.icon : "";
+  const icon = unihub.icon && unihub.icon.startsWith("http") ? unihub.icon : "";
 
   return {
     id: unihub.id || pluginName,

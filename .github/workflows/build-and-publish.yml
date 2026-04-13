@@ -121,6 +121,14 @@ jobs:
           git add marketplace/plugins.json
           if ! git diff --staged --quiet; then
             git commit -m "chore: update marketplace after build [skip ci]"
-            git pull --rebase origin main
+            # marketplace/plugins.json 是纯生成物，冲突时始终以当前版本为准
+            for i in 1 2 3; do
+              git pull --rebase origin main && break
+              echo "Rebase conflict detected, resolving with ours..."
+              git checkout --theirs marketplace/plugins.json || true
+              node scripts/update-marketplace.js
+              git add marketplace/plugins.json
+              git rebase --continue || true
+            done
             git push
           fi
