@@ -1,0 +1,46 @@
+{
+  "name": "port-manager-plugin",
+  "version": "1.0.0",
+  "description": "端口管理器 - 查看端口占用情况并关闭对应进程",
+  "author": {
+    "name": "UniHub Team",
+    "email": "team@unihub.dev",
+    "url": "https://github.com/unihub"
+  },
+  "keywords": [
+    "port",
+    "process",
+    "network",
+    "监控",
+    "端口",
+    "进程管理"
+  ],
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "package": "node scripts/package.js"
+  },
+  "unihub": {
+    "id": "com.unihub.port-manager",
+    "name": "端口管理器",
+    "icon": "https://api.iconify.design/fluent-emoji/electric-plug.svg",
+    "category": "tool",
+    "permissions": [
+      "system"
+    ],
+    "entry": "dist/index.html"
+  },
+  "dependencies": {
+    "lucide-vue-next": "^0.562.0",
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.18",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "archiver": "^7.0.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.7.3",
+    "vite": "^6.0.3"
+  }
+}
