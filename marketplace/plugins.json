@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-04-15T11:22:25.000Z",
+  "lastUpdated": "2026-04-15T11:23:55.039Z",
   "plugins": [
     {
       "id": "com.unihub.2fa-authenticator",
@@ -36,8 +36,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.587Z",
-      "updatedAt": "2026-04-13T11:38:36.587Z"
+      "createdAt": "2026-04-15T11:23:55.038Z",
+      "updatedAt": "2026-04-15T11:23:55.038Z"
     },
     {
       "id": "com.unihub.calc-paper",
@@ -71,8 +71,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.587Z",
-      "updatedAt": "2026-04-13T11:38:36.587Z"
+      "createdAt": "2026-04-15T11:23:55.038Z",
+      "updatedAt": "2026-04-15T11:23:55.038Z"
     },
     {
       "id": "com.unihub.clipboard-history",
@@ -108,8 +108,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.587Z",
-      "updatedAt": "2026-04-13T11:38:36.587Z"
+      "createdAt": "2026-04-15T11:23:55.038Z",
+      "updatedAt": "2026-04-15T11:23:55.038Z"
     },
     {
       "id": "com.unihub.code-diff",
@@ -144,8 +144,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.587Z",
-      "updatedAt": "2026-04-13T11:38:36.587Z"
+      "createdAt": "2026-04-15T11:23:55.038Z",
+      "updatedAt": "2026-04-15T11:23:55.038Z"
     },
     {
       "id": "com.unihub.color-picker",
@@ -182,8 +182,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.587Z",
-      "updatedAt": "2026-04-13T11:38:36.587Z"
+      "createdAt": "2026-04-15T11:23:55.038Z",
+      "updatedAt": "2026-04-15T11:23:55.038Z"
     },
     {
       "id": "com.baiy.ctool",
@@ -220,8 +220,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.587Z",
-      "updatedAt": "2026-04-13T11:38:36.587Z"
+      "createdAt": "2026-04-15T11:23:55.038Z",
+      "updatedAt": "2026-04-15T11:23:55.038Z"
     },
     {
       "id": "com.unihub.curl-converter",
@@ -256,8 +256,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.excalidraw",
@@ -293,8 +293,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.h5-formatter",
@@ -331,8 +331,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.image-compressor",
@@ -366,8 +366,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.javascript-formatter",
@@ -401,8 +401,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.jwt-tool",
@@ -437,8 +437,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.markdown-editor",
@@ -466,8 +466,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.password-manager",
@@ -503,8 +503,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.pdf-merger",
@@ -537,8 +537,43 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
+    },
+    {
+      "id": "com.unihub.port-manager",
+      "name": "端口管理器",
+      "version": "1.0.0",
+      "description": "端口管理器 - 查看端口占用情况并关闭对应进程",
+      "author": {
+        "name": "UniHub Team",
+        "email": "team@unihub.dev",
+        "url": "https://github.com/unihub"
+      },
+      "icon": "https://api.iconify.design/fluent-emoji/electric-plug.svg",
+      "category": "tool",
+      "keywords": [
+        "port",
+        "process",
+        "network",
+        "监控",
+        "端口",
+        "进程管理"
+      ],
+      "permissions": [
+        "system"
+      ],
+      "install": {
+        "zip": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/port-manager/1.0.0/plugin.zip"
+      },
+      "downloadUrl": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/port-manager/1.0.0/plugin.zip",
+      "homepage": "",
+      "repository": "",
+      "screenshots": [],
+      "downloads": 0,
+      "rating": 0,
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.timestamp-tool",
@@ -574,8 +609,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     },
     {
       "id": "com.unihub.todolist",
@@ -610,36 +645,8 @@
       "screenshots": [],
       "downloads": 0,
       "rating": 0,
-      "createdAt": "2026-04-13T11:38:36.588Z",
-      "updatedAt": "2026-04-13T11:38:36.588Z"
-    },
-    {
-      "id": "com.unihub.port-manager",
-      "name": "端口管理器",
-      "version": "1.0.0",
-      "description": "端口管理器 - 查看端口占用情况并关闭对应进程",
-      "author": {
-        "name": "UniHub Team",
-        "email": "team@unihub.dev",
-        "url": "https://github.com/unihub"
-      },
-      "icon": "https://api.iconify.design/fluent-emoji/electric-plug.svg",
-      "category": "tool",
-      "keywords": [
-        "port",
-        "process",
-        "network",
-        "监控",
-        "端口",
-        "进程管理"
-      ],
-      "permissions": [
-        "system"
-      ],
-      "install": {
-        "type": "zip",
-        "url": "https://unihub-1307847329.cos.ap-shanghai.myqcloud.com/plugins/port-manager/plugin.zip"
-      }
+      "createdAt": "2026-04-15T11:23:55.039Z",
+      "updatedAt": "2026-04-15T11:23:55.039Z"
     }
   ]
 }
