@@ -1,46 +1,52 @@
 <template>
-  <div class="app">
+  <div class="flex flex-col min-h-screen bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100">
     <!-- 头部 -->
-    <header class="header">
-      <div class="header-left">
-        <span class="header-icon">🔌</span>
-        <h1 class="header-title">端口管理器</h1>
-        <span class="port-count" v-if="!loading"
-          >{{ filteredPorts.length }} 个端口</span
+    <header class="flex items-center justify-between px-4 py-3 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+      <div class="flex items-center gap-2">
+        <h1 class="text-[15px] font-semibold tracking-tight">端口管理器</h1>
+        <span
+          v-if="!loading"
+          class="text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-2 py-0.5 rounded-full"
         >
+          {{ filteredPorts.length }} 个端口
+        </span>
       </div>
-      <div class="header-right">
-        <button
-          class="btn btn-ghost"
-          @click="refresh"
-          :disabled="loading"
-          title="刷新"
-        >
-          <RefreshCw :size="15" :class="{ spin: loading }" />
-        </button>
-      </div>
+      <button
+        class="flex items-center justify-center w-7 h-7 rounded-md text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors disabled:opacity-40"
+        :disabled="loading"
+        title="刷新"
+        @click="refresh"
+      >
+        <RefreshCw :size="14" :class="{ 'animate-spin': loading }" />
+      </button>
     </header>
 
     <!-- 过滤栏 -->
-    <div class="filter-bar">
-      <div class="search-wrapper">
-        <Search :size="14" class="search-icon" />
+    <div class="flex items-center gap-2 px-4 py-2.5 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 flex-wrap">
+      <div class="relative flex-1 min-w-[180px]">
+        <Search :size="13" class="absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500 pointer-events-none" />
         <input
           v-model="searchQuery"
-          class="search-input"
-          placeholder="搜索端口号、进程名或 PID..."
           type="text"
+          class="w-full pl-7 pr-7 py-1.5 text-[13px] bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-md text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 outline-none focus:border-indigo-400 dark:focus:border-indigo-500 transition-colors"
+          placeholder="搜索端口号、进程名或 PID..."
         />
-        <button v-if="searchQuery" class="clear-btn" @click="searchQuery = ''">
+        <button
+          v-if="searchQuery"
+          class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
+          @click="searchQuery = ''"
+        >
           <X :size="12" />
         </button>
       </div>
-      <div class="protocol-tabs">
+      <div class="flex border border-slate-200 dark:border-slate-700 rounded-md overflow-hidden text-[12px] font-medium">
         <button
           v-for="tab in protocolTabs"
           :key="tab.value"
-          class="tab-btn"
-          :class="{ active: protocolFilter === tab.value }"
+          class="px-3 py-1.5 transition-colors"
+          :class="protocolFilter === tab.value
+            ? 'bg-indigo-500 dark:bg-indigo-600 text-white'
+            : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-700 border-r border-slate-200 dark:border-slate-700 last:border-r-0'"
           @click="protocolFilter = tab.value"
         >
           {{ tab.label }}
@@ -49,80 +55,80 @@
     </div>
 
     <!-- 内容区 -->
-    <div class="content">
-      <!-- 加载中 -->
-      <div v-if="loading" class="empty-state">
-        <Loader2 :size="28" class="spin text-accent" />
-        <p>正在获取端口信息...</p>
+    <div class="flex-1 overflow-auto">
+      <div v-if="loading" class="flex flex-col items-center justify-center gap-3 py-16 text-slate-500 dark:text-slate-400">
+        <Loader2 :size="26" class="animate-spin text-indigo-500" />
+        <p class="text-sm">正在获取端口信息...</p>
       </div>
 
-      <!-- 错误 -->
-      <div v-else-if="error" class="empty-state error">
-        <AlertCircle :size="28" />
-        <p>{{ error }}</p>
-        <button class="btn btn-primary" @click="refresh">重试</button>
+      <div v-else-if="error" class="flex flex-col items-center justify-center gap-3 py-16 text-red-500 dark:text-red-400">
+        <AlertCircle :size="26" />
+        <p class="text-sm">{{ error }}</p>
+        <button
+          class="mt-1 px-4 py-1.5 text-xs font-medium bg-indigo-500 hover:bg-indigo-600 text-white rounded-md transition-colors"
+          @click="refresh"
+        >
+          重试
+        </button>
       </div>
 
-      <!-- 空结果 -->
-      <div v-else-if="filteredPorts.length === 0" class="empty-state">
-        <Unplug :size="28" class="text-muted" />
-        <p class="text-muted">没有找到匹配的端口</p>
+      <div v-else-if="filteredPorts.length === 0" class="flex flex-col items-center justify-center gap-2 py-16 text-slate-400 dark:text-slate-500">
+        <Unplug :size="26" />
+        <p class="text-sm">没有找到匹配的端口</p>
       </div>
 
-      <!-- 端口表格 -->
-      <div v-else class="table-wrapper">
-        <table class="port-table">
+      <div v-else class="overflow-x-auto">
+        <table class="w-full text-[13px] border-collapse">
           <thead>
-            <tr>
-              <th @click="sortBy('port')" class="sortable">
-                端口
-                <SortIcon field="port" />
+            <tr class="bg-slate-50 dark:bg-slate-800/70 text-slate-500 dark:text-slate-400 text-[12px] font-medium">
+              <th
+                v-for="col in columns"
+                :key="col.field"
+                class="px-3 py-2 text-left whitespace-nowrap border-b border-slate-200 dark:border-slate-700 select-none"
+                :class="col.sortable ? 'cursor-pointer hover:text-slate-900 dark:hover:text-slate-100' : ''"
+                @click="col.sortable ? sortBy(col.field as SortField) : undefined"
+              >
+                {{ col.label }}
+                <template v-if="col.sortable">
+                  <ChevronUp v-if="sortField === col.field && sortDir === 'asc'" :size="11" class="inline ml-0.5 text-indigo-500" />
+                  <ChevronDown v-else-if="sortField === col.field && sortDir === 'desc'" :size="11" class="inline ml-0.5 text-indigo-500" />
+                  <ChevronsUpDown v-else :size="11" class="inline ml-0.5 opacity-40" />
+                </template>
               </th>
-              <th @click="sortBy('protocol')" class="sortable">
-                协议
-                <SortIcon field="protocol" />
-              </th>
-              <th @click="sortBy('name')" class="sortable">
-                进程名
-                <SortIcon field="name" />
-              </th>
-              <th @click="sortBy('pid')" class="sortable">
-                PID
-                <SortIcon field="pid" />
-              </th>
-              <th>地址</th>
-              <th>操作</th>
             </tr>
           </thead>
           <tbody>
             <tr
               v-for="p in sortedPorts"
               :key="`${p.pid}-${p.port}-${p.protocol}`"
-              class="port-row"
+              class="border-b border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors"
             >
-              <td>
-                <span class="port-number">{{ p.port }}</span>
+              <td class="px-3 py-2">
+                <span class="font-semibold tabular-nums text-indigo-600 dark:text-indigo-400">{{ p.port }}</span>
               </td>
-              <td>
+              <td class="px-3 py-2">
                 <span
-                  class="badge"
-                  :class="p.protocol === 'TCP' ? 'badge-tcp' : 'badge-udp'"
+                  class="inline-block px-1.5 py-0.5 text-[11px] font-semibold rounded tracking-wide border"
+                  :class="p.protocol === 'TCP'
+                    ? 'bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border-indigo-200 dark:border-indigo-500/30'
+                    : 'bg-amber-50 dark:bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-500/30'"
                 >
                   {{ p.protocol }}
                 </span>
               </td>
-              <td class="process-name" :title="p.name">{{ p.name || "—" }}</td>
-              <td class="pid-cell">{{ p.pid }}</td>
-              <td class="address-cell">{{ p.address || "—" }}</td>
-              <td>
+              <td class="px-3 py-2 max-w-[160px] truncate text-slate-700 dark:text-slate-300" :title="p.name">
+                {{ p.name || '—' }}
+              </td>
+              <td class="px-3 py-2 tabular-nums text-slate-500 dark:text-slate-400">{{ p.pid }}</td>
+              <td class="px-3 py-2 text-[12px] text-slate-400 dark:text-slate-500">{{ p.address || '—' }}</td>
+              <td class="px-3 py-2">
                 <button
-                  class="btn btn-danger btn-sm"
-                  @click="confirmKill(p)"
+                  class="inline-flex items-center gap-1 px-2 py-1 text-[11px] font-medium bg-red-500 hover:bg-red-600 dark:bg-red-500/80 dark:hover:bg-red-500 text-white rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   :disabled="killing === p.pid"
-                  title="关闭进程"
+                  @click="confirmKill(p)"
                 >
-                  <Loader2 v-if="killing === p.pid" :size="12" class="spin" />
-                  <X v-else :size="12" />
+                  <Loader2 v-if="killing === p.pid" :size="11" class="animate-spin" />
+                  <X v-else :size="11" />
                   关闭
                 </button>
               </td>
@@ -133,37 +139,47 @@
     </div>
 
     <!-- 确认弹窗 -->
-    <div
-      v-if="confirmTarget"
-      class="modal-overlay"
-      @click.self="confirmTarget = null"
-    >
-      <div class="modal">
-        <div class="modal-icon">
-          <AlertTriangle :size="24" class="text-warning" />
-        </div>
-        <h2 class="modal-title">关闭进程</h2>
-        <p class="modal-body">
-          确定要关闭进程
-          <strong>{{ confirmTarget.name || "Unknown" }}</strong>
-          (PID: {{ confirmTarget.pid }}) 吗？
-        </p>
-        <p class="modal-sub">
-          该进程正在占用端口 <strong>{{ confirmTarget.port }}</strong>
-        </p>
-        <div class="modal-actions">
-          <button class="btn btn-ghost" @click="confirmTarget = null">
-            取消
-          </button>
-          <button class="btn btn-danger" @click="doKill">确认关闭</button>
+    <Teleport to="body">
+      <div
+        v-if="confirmTarget"
+        class="fixed inset-0 flex items-center justify-center z-50 bg-black/40 backdrop-blur-sm"
+        @click.self="confirmTarget = null"
+      >
+        <div class="w-80 max-w-[calc(100vw-2rem)] bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl shadow-2xl p-6">
+          <div class="flex justify-center mb-3">
+            <AlertTriangle :size="24" class="text-amber-500" />
+          </div>
+          <h2 class="text-[15px] font-semibold text-center mb-2">关闭进程</h2>
+          <p class="text-[13px] text-slate-500 dark:text-slate-400 text-center mb-1">
+            确定要关闭进程
+            <strong class="text-slate-800 dark:text-slate-200">{{ confirmTarget.name || 'Unknown' }}</strong>
+            (PID: {{ confirmTarget.pid }}) 吗？
+          </p>
+          <p class="text-[12px] text-slate-400 dark:text-slate-500 text-center mb-5">
+            该进程正在占用端口 <strong class="text-slate-700 dark:text-slate-300">{{ confirmTarget.port }}</strong>
+          </p>
+          <div class="flex gap-2">
+            <button
+              class="flex-1 py-1.5 text-[13px] font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+              @click="confirmTarget = null"
+            >
+              取消
+            </button>
+            <button
+              class="flex-1 py-1.5 text-[13px] font-medium bg-red-500 hover:bg-red-600 text-white rounded-md transition-colors"
+              @click="doKill"
+            >
+              确认关闭
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, h } from "vue";
+import { ref, computed, onMounted } from 'vue'
 import {
   RefreshCw,
   Search,
@@ -174,488 +190,112 @@ import {
   Unplug,
   ChevronUp,
   ChevronDown,
-  ChevronsUpDown,
-} from "lucide-vue-next";
+  ChevronsUpDown
+} from 'lucide-vue-next'
 
 interface PortInfo {
-  pid: number;
-  name: string;
-  port: number;
-  protocol: "TCP" | "UDP";
-  state: string;
-  address: string;
+  pid: number
+  name: string
+  port: number
+  protocol: 'TCP' | 'UDP'
+  state: string
+  address: string
 }
 
-type SortField = "port" | "protocol" | "name" | "pid";
-type SortDir = "asc" | "desc";
+type SortField = 'port' | 'protocol' | 'name' | 'pid'
+type SortDir = 'asc' | 'desc'
 
-// --- 状态 ---
-const ports = ref<PortInfo[]>([]);
-const loading = ref(false);
-const error = ref<string | null>(null);
-const killing = ref<number | null>(null);
-const confirmTarget = ref<PortInfo | null>(null);
+const ports = ref<PortInfo[]>([])
+const loading = ref(false)
+const error = ref<string | null>(null)
+const killing = ref<number | null>(null)
+const confirmTarget = ref<PortInfo | null>(null)
 
-const searchQuery = ref("");
-const protocolFilter = ref<"ALL" | "TCP" | "UDP">("ALL");
-const sortField = ref<SortField>("port");
-const sortDir = ref<SortDir>("asc");
+const searchQuery = ref('')
+const protocolFilter = ref<'ALL' | 'TCP' | 'UDP'>('ALL')
+const sortField = ref<SortField>('port')
+const sortDir = ref<SortDir>('asc')
 
-const protocolTabs = [
-  { label: "全部", value: "ALL" as const },
-  { label: "TCP", value: "TCP" as const },
-  { label: "UDP", value: "UDP" as const },
-];
+const protocolTabs: { label: string; value: 'ALL' | 'TCP' | 'UDP' }[] = [
+  { label: '全部', value: 'ALL' },
+  { label: 'TCP', value: 'TCP' },
+  { label: 'UDP', value: 'UDP' }
+]
 
-// --- 计算 ---
+const columns: { label: string; field: string; sortable: boolean }[] = [
+  { label: '端口', field: 'port', sortable: true },
+  { label: '协议', field: 'protocol', sortable: true },
+  { label: '进程名', field: 'name', sortable: true },
+  { label: 'PID', field: 'pid', sortable: true },
+  { label: '地址', field: 'address', sortable: false },
+  { label: '操作', field: 'action', sortable: false }
+]
+
 const filteredPorts = computed(() => {
-  const q = searchQuery.value.trim().toLowerCase();
+  const q = searchQuery.value.trim().toLowerCase()
   return ports.value.filter((p) => {
-    if (protocolFilter.value !== "ALL" && p.protocol !== protocolFilter.value)
-      return false;
-    if (!q) return true;
+    if (protocolFilter.value !== 'ALL' && p.protocol !== protocolFilter.value) return false
+    if (!q) return true
     return (
       String(p.port).includes(q) ||
       p.name.toLowerCase().includes(q) ||
       String(p.pid).includes(q) ||
       p.address.toLowerCase().includes(q)
-    );
-  });
-});
+    )
+  })
+})
 
 const sortedPorts = computed(() => {
-  const list = [...filteredPorts.value];
-  const dir = sortDir.value === "asc" ? 1 : -1;
+  const list = [...filteredPorts.value]
+  const dir = sortDir.value === 'asc' ? 1 : -1
   return list.sort((a, b) => {
-    const va = a[sortField.value];
-    const vb = b[sortField.value];
-    if (typeof va === "number" && typeof vb === "number")
-      return (va - vb) * dir;
-    return String(va).localeCompare(String(vb)) * dir;
-  });
-});
+    const va = a[sortField.value as keyof PortInfo]
+    const vb = b[sortField.value as keyof PortInfo]
+    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dir
+    return String(va).localeCompare(String(vb)) * dir
+  })
+})
 
-// --- 排序图标组件 ---
-const SortIcon = (props: { field: SortField }) => {
-  if (sortField.value !== props.field)
-    return h(ChevronsUpDown, { size: 12, class: "sort-icon muted" });
-  return sortDir.value === "asc"
-    ? h(ChevronUp, { size: 12, class: "sort-icon active" })
-    : h(ChevronDown, { size: 12, class: "sort-icon active" });
-};
-
-// --- 方法 ---
 function sortBy(field: SortField) {
   if (sortField.value === field) {
-    sortDir.value = sortDir.value === "asc" ? "desc" : "asc";
+    sortDir.value = sortDir.value === 'asc' ? 'desc' : 'asc'
   } else {
-    sortField.value = field;
-    sortDir.value = "asc";
+    sortField.value = field
+    sortDir.value = 'asc'
   }
 }
 
 async function refresh() {
-  loading.value = true;
-  error.value = null;
+  loading.value = true
+  error.value = null
   try {
-    ports.value = await window.unihub.system.getPorts();
+    ports.value = await window.unihub.system.getPorts()
   } catch (e) {
-    error.value = e instanceof Error ? e.message : "获取端口信息失败";
+    error.value = e instanceof Error ? e.message : '获取端口信息失败'
   } finally {
-    loading.value = false;
+    loading.value = false
   }
 }
 
 function confirmKill(p: PortInfo) {
-  confirmTarget.value = p;
+  confirmTarget.value = p
 }
 
 async function doKill() {
-  if (!confirmTarget.value) return;
-  const target = confirmTarget.value;
-  confirmTarget.value = null;
-  killing.value = target.pid;
+  if (!confirmTarget.value) return
+  const target = confirmTarget.value
+  confirmTarget.value = null
+  killing.value = target.pid
   try {
-    await window.unihub.system.killProcess(target.pid);
-    // 稍等后刷新，让系统有时间释放端口
-    await new Promise((r) => setTimeout(r, 500));
-    await refresh();
+    await window.unihub.system.killProcess(target.pid)
+    await new Promise((r) => setTimeout(r, 500))
+    await refresh()
   } catch (e) {
-    error.value = e instanceof Error ? e.message : "关闭进程失败";
+    error.value = e instanceof Error ? e.message : '关闭进程失败'
   } finally {
-    killing.value = null;
+    killing.value = null
   }
 }
 
-onMounted(refresh);
+onMounted(refresh)
 </script>
-
-<style scoped>
-.app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-/* 头部 */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px 10px;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--bg-card);
-}
-.header-left {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.header-icon {
-  font-size: 18px;
-  line-height: 1;
-}
-.header-title {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-.port-count {
-  font-size: 12px;
-  color: var(--text-muted);
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  padding: 1px 7px;
-  border-radius: 20px;
-}
-.header-right {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-/* 过滤栏 */
-.filter-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--bg-secondary);
-  flex-wrap: wrap;
-}
-.search-wrapper {
-  position: relative;
-  flex: 1;
-  min-width: 200px;
-}
-.search-icon {
-  position: absolute;
-  left: 9px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted);
-  pointer-events: none;
-}
-.search-input {
-  width: 100%;
-  padding: 6px 28px 6px 30px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background: var(--bg-card);
-  color: var(--text-primary);
-  font-size: 13px;
-  outline: none;
-  transition: border-color 0.15s;
-}
-.search-input:focus {
-  border-color: var(--accent);
-}
-.search-input::placeholder {
-  color: var(--text-muted);
-}
-.clear-btn {
-  position: absolute;
-  right: 7px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-muted);
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  border-radius: 3px;
-}
-.clear-btn:hover {
-  color: var(--text-primary);
-}
-.protocol-tabs {
-  display: flex;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  overflow: hidden;
-}
-.tab-btn {
-  padding: 5px 12px;
-  background: var(--bg-card);
-  border: none;
-  border-right: 1px solid var(--border-color);
-  color: var(--text-secondary);
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    color 0.15s;
-}
-.tab-btn:last-child {
-  border-right: none;
-}
-.tab-btn:hover {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-}
-.tab-btn.active {
-  background: var(--accent);
-  color: #fff;
-}
-
-/* 内容区 */
-.content {
-  flex: 1;
-  overflow: auto;
-}
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 60px 20px;
-  color: var(--text-secondary);
-}
-.empty-state.error {
-  color: var(--danger);
-}
-.text-muted {
-  color: var(--text-muted);
-}
-.text-accent {
-  color: var(--accent);
-}
-
-/* 表格 */
-.table-wrapper {
-  overflow-x: auto;
-}
-.port-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-.port-table th {
-  position: sticky;
-  top: 0;
-  background: var(--bg-secondary);
-  color: var(--text-secondary);
-  font-weight: 500;
-  padding: 8px 12px;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 12px;
-  white-space: nowrap;
-}
-.port-table th.sortable {
-  cursor: pointer;
-  user-select: none;
-  display: table-cell;
-}
-.port-table th.sortable:hover {
-  color: var(--text-primary);
-}
-.port-table th {
-  display: table-cell;
-}
-.sort-icon {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 3px;
-}
-.sort-icon.muted {
-  color: var(--text-muted);
-}
-.sort-icon.active {
-  color: var(--accent);
-}
-.port-table td {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--border-color);
-  vertical-align: middle;
-}
-.port-row:hover td {
-  background: var(--bg-secondary);
-}
-.port-number {
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--accent);
-}
-.badge {
-  display: inline-block;
-  padding: 1px 7px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-}
-.badge-tcp {
-  background: rgba(99, 102, 241, 0.12);
-  color: var(--accent);
-  border: 1px solid rgba(99, 102, 241, 0.25);
-}
-.badge-udp {
-  background: rgba(245, 158, 11, 0.12);
-  color: var(--warning);
-  border: 1px solid rgba(245, 158, 11, 0.25);
-}
-.process-name {
-  max-width: 160px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.pid-cell {
-  font-variant-numeric: tabular-nums;
-  color: var(--text-secondary);
-}
-.address-cell {
-  color: var(--text-muted);
-  font-size: 12px;
-}
-
-/* 按钮 */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 5px 10px;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: 500;
-  cursor: pointer;
-  transition:
-    background 0.15s,
-    opacity 0.15s;
-}
-.btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-.btn-ghost {
-  background: transparent;
-  border-color: var(--border-color);
-  color: var(--text-secondary);
-}
-.btn-ghost:hover:not(:disabled) {
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-}
-.btn-primary {
-  background: var(--accent);
-  color: #fff;
-  border-color: var(--accent);
-}
-.btn-primary:hover:not(:disabled) {
-  background: var(--accent-hover);
-}
-.btn-danger {
-  background: var(--danger);
-  color: #fff;
-  border-color: var(--danger);
-}
-.btn-danger:hover:not(:disabled) {
-  background: var(--danger-hover);
-}
-.btn-sm {
-  padding: 3px 8px;
-  font-size: 11px;
-}
-
-/* 旋转动画 */
-.spin {
-  animation: spin 0.8s linear infinite;
-}
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* 确认弹窗 */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  backdrop-filter: blur(2px);
-}
-.modal {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 10px;
-  padding: 24px;
-  width: 340px;
-  max-width: calc(100vw - 32px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-}
-.modal-icon {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 12px;
-}
-.text-warning {
-  color: var(--warning);
-}
-.modal-title {
-  font-size: 16px;
-  font-weight: 600;
-  text-align: center;
-  margin-bottom: 8px;
-}
-.modal-body {
-  font-size: 13px;
-  color: var(--text-secondary);
-  text-align: center;
-  margin-bottom: 4px;
-}
-.modal-sub {
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: center;
-  margin-bottom: 20px;
-}
-.modal-body strong,
-.modal-sub strong {
-  color: var(--text-primary);
-}
-.modal-actions {
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-.modal-actions .btn {
-  flex: 1;
-  justify-content: center;
-}
-</style>

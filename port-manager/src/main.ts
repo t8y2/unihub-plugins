@@ -16,3 +16,12 @@ const syncTheme = () => {
 };
 
 syncTheme();
+
+// 监听 storage 变化实时切换主题
+window.addEventListener("storage", (e) => {
+  if (e.key === "unihub-theme") syncTheme();
+});
+
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", syncTheme);
