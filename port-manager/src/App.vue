@@ -4,9 +4,16 @@
     <header class="app-header">
       <div class="header-left">
         <h1 class="header-title">端口管理器</h1>
-        <span v-if="!loading" class="port-count">{{ filteredPorts.length }} 个端口</span>
+        <span v-if="!loading" class="port-count"
+          >{{ filteredPorts.length }} 个端口</span
+        >
       </div>
-      <button class="icon-btn" :disabled="loading" title="刷新" @click="refresh">
+      <button
+        class="icon-btn"
+        :disabled="loading"
+        title="刷新"
+        @click="refresh"
+      >
         <RefreshCw :size="14" :class="{ spinning: loading }" />
       </button>
     </header>
@@ -21,7 +28,11 @@
           class="search-input"
           placeholder="搜索端口号、进程名或 PID..."
         />
-        <button v-if="searchQuery" class="search-clear" @click="searchQuery = ''">
+        <button
+          v-if="searchQuery"
+          class="search-clear"
+          @click="searchQuery = ''"
+        >
           <X :size="12" />
         </button>
       </div>
@@ -68,29 +79,52 @@
                 v-for="col in columns"
                 :key="col.field"
                 :class="{ sortable: col.sortable }"
-                @click="col.sortable ? sortBy(col.field as SortField) : undefined"
+                @click="
+                  col.sortable ? sortBy(col.field as SortField) : undefined
+                "
               >
                 {{ col.label }}
                 <template v-if="col.sortable">
-                  <ChevronUp v-if="sortField === col.field && sortDir === 'asc'" :size="11" class="sort-indicator active" />
-                  <ChevronDown v-else-if="sortField === col.field && sortDir === 'desc'" :size="11" class="sort-indicator active" />
+                  <ChevronUp
+                    v-if="sortField === col.field && sortDir === 'asc'"
+                    :size="11"
+                    class="sort-indicator active"
+                  />
+                  <ChevronDown
+                    v-else-if="sortField === col.field && sortDir === 'desc'"
+                    :size="11"
+                    class="sort-indicator active"
+                  />
                   <ChevronsUpDown v-else :size="11" class="sort-indicator" />
                 </template>
               </th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="p in sortedPorts" :key="`${p.pid}-${p.port}-${p.protocol}`">
+            <tr
+              v-for="p in sortedPorts"
+              :key="`${p.pid}-${p.port}-${p.protocol}`"
+            >
               <td class="col-port">{{ p.port }}</td>
               <td>
-                <span class="protocol-tag" :class="p.protocol.toLowerCase()">{{ p.protocol }}</span>
+                <span class="protocol-tag" :class="p.protocol.toLowerCase()">{{
+                  p.protocol
+                }}</span>
               </td>
-              <td class="col-name" :title="p.name">{{ p.name || '—' }}</td>
+              <td class="col-name" :title="p.name">{{ p.name || "—" }}</td>
               <td class="col-pid">{{ p.pid }}</td>
-              <td class="col-addr">{{ p.address || '—' }}</td>
+              <td class="col-addr">{{ p.address || "—" }}</td>
               <td>
-                <button class="btn-kill" :disabled="killing === p.pid" @click="confirmKill(p)">
-                  <Loader2 v-if="killing === p.pid" :size="11" class="spinning" />
+                <button
+                  class="btn-kill"
+                  :disabled="killing === p.pid"
+                  @click="confirmKill(p)"
+                >
+                  <Loader2
+                    v-if="killing === p.pid"
+                    :size="11"
+                    class="spinning"
+                  />
                   <X v-else :size="11" />
                   关闭
                 </button>
@@ -103,7 +137,11 @@
 
     <!-- 确认弹窗 -->
     <Teleport to="body">
-      <div v-if="confirmTarget" class="modal-overlay" @click.self="confirmTarget = null">
+      <div
+        v-if="confirmTarget"
+        class="modal-overlay"
+        @click.self="confirmTarget = null"
+      >
         <div class="modal-card">
           <div class="modal-icon-wrap">
             <AlertTriangle :size="24" class="modal-warn-icon" />
@@ -111,14 +149,16 @@
           <h2 class="modal-title">关闭进程</h2>
           <p class="modal-desc">
             确定要关闭进程
-            <strong>{{ confirmTarget.name || 'Unknown' }}</strong>
+            <strong>{{ confirmTarget.name || "Unknown" }}</strong>
             (PID: {{ confirmTarget.pid }}) 吗？
           </p>
           <p class="modal-sub">
             该进程正在占用端口 <strong>{{ confirmTarget.port }}</strong>
           </p>
           <div class="modal-actions">
-            <button class="btn-cancel" @click="confirmTarget = null">取消</button>
+            <button class="btn-cancel" @click="confirmTarget = null">
+              取消
+            </button>
             <button class="btn-danger" @click="doKill">确认关闭</button>
           </div>
         </div>
@@ -128,7 +168,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted } from "vue";
 import {
   RefreshCw,
   Search,
@@ -139,114 +179,116 @@ import {
   Unplug,
   ChevronUp,
   ChevronDown,
-  ChevronsUpDown
-} from 'lucide-vue-next'
+  ChevronsUpDown,
+} from "lucide-vue-next";
 
 interface PortInfo {
-  pid: number
-  name: string
-  port: number
-  protocol: 'TCP' | 'UDP'
-  state: string
-  address: string
+  pid: number;
+  name: string;
+  port: number;
+  protocol: "TCP" | "UDP";
+  state: string;
+  address: string;
 }
 
-type SortField = 'port' | 'protocol' | 'name' | 'pid'
-type SortDir = 'asc' | 'desc'
+type SortField = "port" | "protocol" | "name" | "pid";
+type SortDir = "asc" | "desc";
 
-const ports = ref<PortInfo[]>([])
-const loading = ref(false)
-const error = ref<string | null>(null)
-const killing = ref<number | null>(null)
-const confirmTarget = ref<PortInfo | null>(null)
+const ports = ref<PortInfo[]>([]);
+const loading = ref(false);
+const error = ref<string | null>(null);
+const killing = ref<number | null>(null);
+const confirmTarget = ref<PortInfo | null>(null);
 
-const searchQuery = ref('')
-const protocolFilter = ref<'ALL' | 'TCP' | 'UDP'>('ALL')
-const sortField = ref<SortField>('port')
-const sortDir = ref<SortDir>('asc')
+const searchQuery = ref("");
+const protocolFilter = ref<"ALL" | "TCP" | "UDP">("ALL");
+const sortField = ref<SortField>("port");
+const sortDir = ref<SortDir>("asc");
 
-const protocolTabs: { label: string; value: 'ALL' | 'TCP' | 'UDP' }[] = [
-  { label: '全部', value: 'ALL' },
-  { label: 'TCP', value: 'TCP' },
-  { label: 'UDP', value: 'UDP' }
-]
+const protocolTabs: { label: string; value: "ALL" | "TCP" | "UDP" }[] = [
+  { label: "全部", value: "ALL" },
+  { label: "TCP", value: "TCP" },
+  { label: "UDP", value: "UDP" },
+];
 
 const columns: { label: string; field: string; sortable: boolean }[] = [
-  { label: '端口', field: 'port', sortable: true },
-  { label: '协议', field: 'protocol', sortable: true },
-  { label: '进程名', field: 'name', sortable: true },
-  { label: 'PID', field: 'pid', sortable: true },
-  { label: '地址', field: 'address', sortable: false },
-  { label: '操作', field: 'action', sortable: false }
-]
+  { label: "端口", field: "port", sortable: true },
+  { label: "协议", field: "protocol", sortable: true },
+  { label: "进程名", field: "name", sortable: true },
+  { label: "PID", field: "pid", sortable: true },
+  { label: "地址", field: "address", sortable: false },
+  { label: "操作", field: "action", sortable: false },
+];
 
 const filteredPorts = computed(() => {
-  const q = searchQuery.value.trim().toLowerCase()
+  const q = searchQuery.value.trim().toLowerCase();
   return ports.value.filter((p) => {
-    if (protocolFilter.value !== 'ALL' && p.protocol !== protocolFilter.value) return false
-    if (!q) return true
+    if (protocolFilter.value !== "ALL" && p.protocol !== protocolFilter.value)
+      return false;
+    if (!q) return true;
     return (
       String(p.port).includes(q) ||
       p.name.toLowerCase().includes(q) ||
       String(p.pid).includes(q) ||
       p.address.toLowerCase().includes(q)
-    )
-  })
-})
+    );
+  });
+});
 
 const sortedPorts = computed(() => {
-  const list = [...filteredPorts.value]
-  const dir = sortDir.value === 'asc' ? 1 : -1
+  const list = [...filteredPorts.value];
+  const dir = sortDir.value === "asc" ? 1 : -1;
   return list.sort((a, b) => {
-    const va = a[sortField.value as keyof PortInfo]
-    const vb = b[sortField.value as keyof PortInfo]
-    if (typeof va === 'number' && typeof vb === 'number') return (va - vb) * dir
-    return String(va).localeCompare(String(vb)) * dir
-  })
-})
+    const va = a[sortField.value as keyof PortInfo];
+    const vb = b[sortField.value as keyof PortInfo];
+    if (typeof va === "number" && typeof vb === "number")
+      return (va - vb) * dir;
+    return String(va).localeCompare(String(vb)) * dir;
+  });
+});
 
 function sortBy(field: SortField) {
   if (sortField.value === field) {
-    sortDir.value = sortDir.value === 'asc' ? 'desc' : 'asc'
+    sortDir.value = sortDir.value === "asc" ? "desc" : "asc";
   } else {
-    sortField.value = field
-    sortDir.value = 'asc'
+    sortField.value = field;
+    sortDir.value = "asc";
   }
 }
 
 async function refresh() {
-  loading.value = true
-  error.value = null
+  loading.value = true;
+  error.value = null;
   try {
-    ports.value = await window.unihub.system.getPorts()
+    ports.value = await window.unihub.system.getPorts();
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '获取端口信息失败'
+    error.value = e instanceof Error ? e.message : "获取端口信息失败";
   } finally {
-    loading.value = false
+    loading.value = false;
   }
 }
 
 function confirmKill(p: PortInfo) {
-  confirmTarget.value = p
+  confirmTarget.value = p;
 }
 
 async function doKill() {
-  if (!confirmTarget.value) return
-  const target = confirmTarget.value
-  confirmTarget.value = null
-  killing.value = target.pid
+  if (!confirmTarget.value) return;
+  const target = confirmTarget.value;
+  confirmTarget.value = null;
+  killing.value = target.pid;
   try {
-    await window.unihub.system.killProcess(target.pid)
-    await new Promise((r) => setTimeout(r, 500))
-    await refresh()
+    await window.unihub.system.killProcess(target.pid);
+    await new Promise((r) => setTimeout(r, 500));
+    await refresh();
   } catch (e) {
-    error.value = e instanceof Error ? e.message : '关闭进程失败'
+    error.value = e instanceof Error ? e.message : "关闭进程失败";
   } finally {
-    killing.value = null
+    killing.value = null;
   }
 }
 
-onMounted(refresh)
+onMounted(refresh);
 </script>
 
 <style scoped>
@@ -478,15 +520,15 @@ onMounted(refresh)
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--text-secondary);
+  color: var(--text-primary);
 }
 .col-pid {
   font-variant-numeric: tabular-nums;
-  color: var(--text-muted);
+  color: var(--text-primary);
 }
 .col-addr {
   font-size: 12px;
-  color: var(--text-muted);
+  color: var(--text-primary);
 }
 
 /* ---- Protocol Tag ---- */
@@ -640,6 +682,8 @@ onMounted(refresh)
   animation: spin 1s linear infinite;
 }
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
